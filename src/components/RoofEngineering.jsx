@@ -78,7 +78,7 @@ const RoofEngineering = () => {
             {/* Left side: High Quality PNG Image instead of SVG */}
             <div className="roof-engineering-image-wrapper" style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <img 
-                    src="/house%26solarpanelpng.png" 
+                    src="/house-solarpanel.webp" 
                     alt="Precision Roof Engineering Solar Panel House" 
                     className="responsive-house-img animate-float"
                     style={{
