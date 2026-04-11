@@ -622,14 +622,10 @@ body {
     font-size: 28px !important;
   }
 
-  .house-mockup {
-    width: 280px !important;
-    height: 280px !important;
-  }
-
-  .house-mockup svg {
-    width: 260px !important;
-    height: 260px !important;
+  .roof-engineering-image-wrapper {
+    width: 100% !important;
+    max-width: 400px !important;
+    margin: 0 auto;
   }
 
   /* Home FAQ */
