@@ -30,7 +30,7 @@ const HeroBento = () => {
 
             {/* MOBILE ONLY: Dedicated Image Element */}
             <div className="hero-mobile-image-container">
-                <img src="/heroimg2.png" alt="Solar House" className="hero-mobile-image" />
+                <img src="/heroimg2.png" alt="Solar House" className="hero-mobile-image" fetchPriority="high" loading="eager" />
             </div>
 
             {/* ===== STATUS PILL (bottom-right cutout) ===== */}

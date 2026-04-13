@@ -4,6 +4,41 @@ import { Link, useLocation } from 'react-router-dom';
 const NavBar = () => {
     const location = useLocation();
     const [menuOpen, setMenuOpen] = useState(false);
+    const [visible, setVisible] = useState(true);
+    const [isAtTop, setIsAtTop] = useState(true);
+
+    React.useEffect(() => {
+        let lastScrollY = window.scrollY;
+        let timeoutId = null;
+
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            setIsAtTop(currentScrollY < 20);
+
+            if (currentScrollY < 10) {
+                setVisible(true);
+                clearTimeout(timeoutId);
+            } else if (currentScrollY > lastScrollY) {
+                setVisible(false);
+                clearTimeout(timeoutId);
+            } else {
+                setVisible(true);
+                clearTimeout(timeoutId);
+                
+                const waitTime = window.innerWidth > 768 ? 1800 : 1100;
+                timeoutId = setTimeout(() => {
+                    setVisible(false);
+                }, waitTime);
+            }
+            lastScrollY = currentScrollY;
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            clearTimeout(timeoutId);
+        };
+    }, []);
 
     const isActive = (path) => {
         if (path === '/' && location.pathname === '/') return ' active';
@@ -15,7 +50,7 @@ const NavBar = () => {
 
     return (
         <>
-            <div className="navbar-container" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '20px', marginBottom: '24px' }}>
+            <div className={`navbar-container ${!visible ? 'nav-hidden' : 'nav-visible'} ${!isAtTop ? 'nav-scrolled' : ''}`} style={isAtTop ? { borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '20px', marginBottom: '24px' } : {}}>
                 <nav className="flex-row items-center justify-between" style={{ padding: '0 8px' }}>
                     {/* Left Area - Logo */}
                     <div className="flex-row items-center">
@@ -171,14 +206,20 @@ const NavBar = () => {
                     }}>
                     Gallery
                 </Link>
-                <span className="mobile-nav-link"
+                <Link to="/about" onClick={closeMenu} className={`mobile-nav-link${isActive('/about')}`}
                     style={{
-                        color: 'var(--element-dim)', padding: '16px 20px', borderRadius: '14px',
-                        fontSize: '18px', fontWeight: 500, cursor: 'pointer',
-                        borderLeft: '3px solid transparent'
+                        textDecoration: 'none',
+                        color: isActive('/about') ? '#fff' : 'var(--element-dim)',
+                        padding: '16px 20px',
+                        borderRadius: '14px',
+                        fontSize: '18px',
+                        fontWeight: 500,
+                        transition: 'all 0.2s ease',
+                        background: isActive('/about') ? 'rgba(0, 212, 255, 0.08)' : 'transparent',
+                        borderLeft: isActive('/about') ? '3px solid #00D4FF' : '3px solid transparent'
                     }}>
                     About
-                </span>
+                </Link>
                 <Link to="/contact" onClick={closeMenu} className={`mobile-nav-link${isActive('/contact')}`}
                     style={{
                         textDecoration: 'none',
