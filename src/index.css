@@ -28,6 +28,11 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  overflow-x: hidden;
 }
 
 body {
@@ -507,9 +512,6 @@ body {
     left: 0 !important;
     width: 100% !important;
     z-index: 1000 !important;
-    background: rgba(15, 16, 17, 0.95) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
     transition: transform 0.3s ease-in-out !important;
     margin: 0 !important;
     padding-left: 1rem;

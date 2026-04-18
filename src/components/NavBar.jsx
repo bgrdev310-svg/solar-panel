@@ -132,7 +132,7 @@ const NavBar = () => {
                         backgroundColor: 'rgba(0, 0, 0, 0.6)',
                         backdropFilter: 'blur(4px)',
                         WebkitBackdropFilter: 'blur(4px)',
-                        zIndex: 998,
+                        zIndex: 1030,
                         transition: 'opacity 0.3s ease'
                     }}
                 />
@@ -152,16 +152,42 @@ const NavBar = () => {
                     WebkitBackdropFilter: 'blur(30px)',
                     borderLeft: '1px solid rgba(0, 212, 255, 0.1)',
                     boxShadow: menuOpen ? '-20px 0 60px rgba(0, 0, 0, 0.5)' : 'none',
-                    zIndex: 999,
+                    zIndex: 1031,
                     display: 'flex',
                     flexDirection: 'column',
-                    padding: '80px 24px 40px 24px',
+                    padding: '30px 24px 40px 24px',
                     gap: '8px',
                     transform: menuOpen ? 'translateX(0)' : 'translateX(100%)',
                     transition: 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
                     overflowY: 'auto'
                 }}
             >
+                {/* Mobile Sidebar Header */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
+                    <span className="michroma-title" style={{ fontSize: '18px', letterSpacing: '1px', WebkitTextStroke: '0px' }}>
+                        SOLAR PANEL
+                    </span>
+                    <button
+                        onClick={closeMenu}
+                        aria-label="Close navigation menu"
+                        style={{
+                            background: 'transparent',
+                            border: '1px solid rgba(255,255,255,0.15)',
+                            borderRadius: '12px',
+                            padding: '10px',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            width: '44px',
+                            height: '44px',
+                            color: '#fff',
+                            transition: 'all 0.3s ease'
+                        }}
+                    >
+                        <span style={{ fontSize: '20px', lineHeight: 1 }}>✕</span>
+                    </button>
+                </div>
 
                 {/* Nav Links */}
                 <Link to="/" onClick={closeMenu} className={`mobile-nav-link${isActive('/')}`}

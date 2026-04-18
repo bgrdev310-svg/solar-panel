@@ -14,13 +14,13 @@ const Footer = () => {
                         <h3>Ready to Go Solar?</h3>
                         <p>Get a free consultation and start saving on energy today.</p>
                     </div>
-                    <Link to="/contact" className="footer-cta-button">
-                        Get Free Quote
+                    <button onClick={() => window.dispatchEvent(new Event('openContactModal'))} className="footer-cta-button" style={{ border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}>
+                        Contact Us
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                             <line x1="5" y1="12" x2="19" y2="12" />
                             <polyline points="12 5 19 12 12 19" />
                         </svg>
-                    </Link>
+                    </button>
                 </div>
             </div>
 
@@ -162,8 +162,16 @@ const Footer = () => {
                 /* Gradient accent bar */
                 .footer-accent-bar {
                     height: 3px;
+                    width: 70%;
                     background: linear-gradient(90deg, #007a8c, #00D4FF 30%, #00f0ff 50%, #00D4FF 70%, #007a8c);
                     box-shadow: 0 0 20px rgba(0, 212, 255, 0.4), 0 0 60px rgba(0, 212, 255, 0.15);
+                    border-radius: 4px;
+                    animation: slideBar 4s infinite linear;
+                }
+
+                @keyframes slideBar {
+                    0% { margin-left: -70%; }
+                    100% { margin-left: 100%; }
                 }
 
                 /* ===== CTA BANNER ===== */
